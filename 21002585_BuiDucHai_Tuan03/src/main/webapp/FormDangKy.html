@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+</head>
+<body style="background-color: #a2d8e8; font-family: sans-serif;">
+<h2>Registration Form</h2>
+<form id="registrationForm">
+    <label>First name: <input type="text" name="firstName" maxlength="30" required></label><br><br>
+    <label>Last name: <input type="text" name="lastName" maxlength="30" required></label><br><br>
+    <label>Date of birth:
+        <select name="dobDay">
+            <option>Day</option> <!-- Fill with JS if needed -->
+        </select>
+        <select name="dobMonth">
+            <option>Month</option>
+        </select>
+        <select name="dobYear">
+            <option>Year</option>
+        </select>
+    </label><br><br>
+
+    <label>Email: <input type="email" name="email" required></label><br><br>
+    <label>Mobile number: <input type="text" name="mobile" maxlength="10" required></label><br><br>
+
+    <label>Gender:
+        <input type="radio" name="gender" value="Male">Male
+        <input type="radio" name="gender" value="Female">Female
+    </label><br><br>
+
+    <label>Address: <br>
+        <textarea name="address" rows="4" cols="40"></textarea>
+    </label><br><br>
+
+    <label>City: <input type="text" name="city" maxlength="30"></label><br><br>
+    <label>Pin code: <input type="text" name="pincode" maxlength="6"></label><br><br>
+    <label>State: <input type="text" name="state" maxlength="30"></label><br><br>
+    <label>Country: <input type="text" value="India" readonly></label><br><br>
+
+    <label>Hobbies: <br>
+        <input type="checkbox" name="hobby" value="Drawing">Drawing
+        <input type="checkbox" name="hobby" value="Singing">Singing
+        <input type="checkbox" name="hobby" value="Dancing">Dancing
+        <input type="checkbox" name="hobby" value="Sketching">Sketching
+        <input type="checkbox" name="hobby" value="Others">Others
+    </label><br><br>
+
+    <h4>Qualifications</h4>
+    <table border="1">
+        <tr>
+            <th>Examination</th>
+            <th>Board</th>
+            <th>Percentage</th>
+            <th>Year of Passing</th>
+        </tr>
+        <tr>
+            <td>Class X</td>
+            <td><input type="text" name="board10"></td>
+            <td><input type="text" name="percent10"></td>
+            <td><input type="text" name="year10"></td>
+        </tr>
+        <tr>
+            <td>Class XII</td>
+            <td><input type="text" name="board12"></td>
+            <td><input type="text" name="percent12"></td>
+            <td><input type="text" name="year12"></td>
+        </tr>
+        <tr>
+            <td>Graduation</td>
+            <td><input type="text" name="boardGrad"></td>
+            <td><input type="text" name="percentGrad"></td>
+            <td><input type="text" name="yearGrad"></td>
+        </tr>
+        <tr>
+            <td>Masters</td>
+            <td><input type="text" name="boardMasters"></td>
+            <td><input type="text" name="percentMasters"></td>
+            <td><input type="text" name="yearMasters"></td>
+        </tr>
+    </table><br>
+
+    <label>Course applies for: <br>
+        <input type="radio" name="course" value="BCA">BCA
+        <input type="radio" name="course" value="B.Com">B.Com
+        <input type="radio" name="course" value="B.Sc">B.Sc
+        <input type="radio" name="course" value="B.A">B.A
+    </label><br><br>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("YOUR_USER_ID"); // Đăng ký EmailJS để lấy ID
+    })();
+
+    document.getElementById("registrationForm").addEventListener("submit", function(event){
+        event.preventDefault();
+
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function(response) {
+                alert("Form submitted and email sent successfully!");
+            }, function(error) {
+                alert("Email sending failed!" + JSON.stringify(error));
+            });
+    });
+</script>
+</body>
+</html>
